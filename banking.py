@@ -23,6 +23,9 @@ class BankAccount():
             self.balance -= amount
 
     def transfer(self, amount, target):
-        """ Transfers money from one account to another """
-        self.withdraw(amount)
-        target.deposit(amount)
+        """ Transfers money from one account to another while providing
+            overdraft protection.
+        """
+        if amount <= self.balance:
+            self.withdraw(amount)
+            target.deposit(amount)
